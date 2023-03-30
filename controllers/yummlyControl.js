@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { response, query } = require('express');
 require('dotenv').config()
+
+
 exports.autoComplete = async (req, res) => {
     const { q } =  req.query
      // Check if there is no query value for 'q'
@@ -21,7 +23,7 @@ exports.autoComplete = async (req, res) => {
 
     const response = await axios.request(options);
     // console.log(response) 
-    console.log("Value of params is " +response.params)
+    // console.log("Value of params is " +response.params)
     res.json(response.data);
   } catch (error) {
     console.error(error);
@@ -29,7 +31,6 @@ exports.autoComplete = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while retrieving data' });
   }
 };
-
 
 exports.searchRecipes = async (req, res) => {
   
@@ -50,8 +51,8 @@ exports.searchRecipes = async (req, res) => {
           start,
         },
         headers: {
-          'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-          'X-RapidAPI-Host': 'yummly2.p.rapidapi.com',
+          'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+          'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST,
         //   useQueryString: true
         }
       };
@@ -65,7 +66,7 @@ exports.searchRecipes = async (req, res) => {
       console.log("there's an error in the api call")
       res.send(error)
     }
-  };
+};
 
 exports.feedsList = async(req, res) => {
     try{
@@ -85,8 +86,8 @@ exports.feedsList = async(req, res) => {
                 start,
             },
             headers: {
-                'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-                'X-RapidAPI-Host': 'yummly2.p.rapidapi.com',
+                'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST,
               }
         }
         const response = await axios.request(options)
@@ -119,8 +120,8 @@ exports.feedsSimilarities = async(req, res) => {
               authorId
             },
             headers: {
-              'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-              'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+              'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+              'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
             }
           };
           const response = await axios.request(options)
@@ -139,8 +140,8 @@ exports.tagList = async(req, res) => {
             method: 'GET',
             url: 'https://yummly2.p.rapidapi.com/tags/list',
             headers: {
-              'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-              'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+              'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+              'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
             }
           };
           const response = await axios.request(options)
@@ -159,8 +160,8 @@ exports.categoryList = async (req, res) => {
             method: 'GET',
             url: 'https://yummly2.p.rapidapi.com/categories/list',
             headers: {
-              'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-              'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+              'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+              'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
             }
           };
           const response = await axios.request(options)
@@ -189,8 +190,8 @@ exports.reviewList = async(req, res) => {
             url: 'https://yummly2.p.rapidapi.com/reviews/list',
             params: { offset, globalId, limit },
             headers: {
-              'X-RapidAPI-Key': '8b57bdc3dcmsh8ae267c7ceaff4ep1b9f49jsnf07c663c102b',
-              'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+              'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+              'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
             }
           };
           const response = await axios.request(options)
