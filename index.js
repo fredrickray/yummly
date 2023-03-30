@@ -12,7 +12,7 @@ app.listen(port, () => {
   console.log('Server Running on port 3030');
 });
 
-app.get("/feeds", (req, res) => {
-    console.log("hello")
+app.get("/", (req, res) => {
+    console.log("Server is running ⚡⚡️⚡️️")
     res.send("hello")
 })
